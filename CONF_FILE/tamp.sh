@@ -49,7 +49,7 @@ case ${option} in
 	echo -e "\e[1;38;5;29mtamp -r      \e[1;38;5;198mTo Restart\e[0m"
 	echo -e "\e[1;38;5;29mtamp -dc     \e[1;38;5;198mTo Change Document Root\e[0m"
 	echo -e "\e[1;38;5;29mtamp -df     \e[1;38;5;198mTo Set Document Root as Default\e[0m"
-	echo -e "\e[1;38;5;29mtamp -chp	   \e1;38;5;198mTo Change Port Number\e[0m"
+	echo -e "\e[1;38;5;29mtamp -chp	   \e[1;38;5;198mTo Change Port Number\e[0m"
 	echo -e "\e[1;38;5;29mtamp -log    \e[1;38;5;198mTo Check http Access & Error logs"
 	echo -e "\e[1;38;5;29mtamp -clog   \e[1;38;5;198mTo Clear log history"
 	echo -e "\e[1;38;5;29mtamp -un     \e[1;38;5;198mTo Uninstall Tamp Server\e[0m"
@@ -61,11 +61,11 @@ case ${option} in
 	choice=""
 	printf "\e[1;34mEnter a Port Number\e[0m:- "
 	read choice
-	config_file="/data/data/com.termux/files/usr/share/Tamp/CONF_FILE/httpd.conf"
+	config_file="/data/data/com.termux/files/usr/etc/apache2/httpd.conf"
 	key_to_change="8800"
 	new_value=$choice
 	sed -i "s/^$key_to_change *=.*/$key_to_change = $new_value/" "$config_file"
-	config_file1="/data/data/com.termux/files/usr/share/Tamp/CONF_FILE/httpd_vhosts.conf"
+	config_file1="/data/data/com.termux/files/usr/etc/apache2/extra/httpd_vhosts.conf"
 	key_to_change1="8800"
 	new_value1=$choice
 	sed -i "s/^$key_to_change1 *=.*/$key_to_change1 = $new_value1/" "$config_file1"

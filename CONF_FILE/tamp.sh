@@ -58,18 +58,26 @@ case ${option} in
       ;;
 
     -chp)
+    	if ps -C httpd >/dev/null; then
+		   echo "SERVER ONLINE PLEASE STOP SERVER TO CHANGE"
+	else
 	port_number=""
 	printf "\e[1;34mEnter a Port Number\e[0m:- "
 	read port_number
 	config_file="/data/data/com.termux/files/usr/etc/apache2/httpd.conf"
 	key_to_change="8800"
 	new_value=$port_number
-	sed -i "s/^$key_to_change *=.*/$key_to_change = $new_value/" "$config_file"
+	if sed -i "s/^$key_to_change *=.*/$key_to_change = $new_value/" "$config_file" then
+ 		echo "Changing Port..."
+   	else
+    		echo "Error Changing Port"
 	config_file1="/data/data/com.termux/files/usr/etc/apache2/extra/httpd-vhosts.conf"
 	key_to_change1="8800"
 	new_value1=$port_number
-	sed -i "s/^$key_to_change1 *=.*/$key_to_change1 = $new_value1/" "$config_file1"
+	if sed -i "s/^$key_to_change1 *=.*/$key_to_change1 = $new_value1/" "$config_file1" then
 	printf "\e[1;32mSuccessfully changed\e[0m\n"
+ 	else
+  		echo "\e[1:31mError Changing Port"
 	;;
 		
 	-df)
